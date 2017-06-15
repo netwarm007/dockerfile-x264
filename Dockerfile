@@ -1,13 +1,11 @@
 FROM tim03/yasm
 LABEL MAINTAINER Chen, Wenli <chenwenli@chenwenli.com>
 
+WORKDIR /usr/src/x264
 RUN \
-  mkdir -p /usr/local/src && \
-  cd /usr/local/src && \
-  git clone http://git.videolan.org/git/x264.git
+  curl ftp://ftp.videolan.org/pub/x264/snapshots/last_stable_x264.tar.bz2 | tar jxv --strip-components=1 -f -
 RUN \
- cd /usr/local/src/x264 && \
- ./configure  --prefix=/usr/local --enable-shared --enable-static \
+ ./configure  --enable-shared --enable-static \
  && make && make install && make clean
 
-CMD /usr/local/bin/x264
+CMD ["/usr/bin/x264"]
