@@ -1,1 +1,1 @@
-# dockerfile-distcc
+# dockerfile-x264
